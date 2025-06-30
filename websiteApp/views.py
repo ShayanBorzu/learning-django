@@ -3,15 +3,15 @@ from django.http import HttpResponse, JsonResponse
 
 
 def home(request):
-    return HttpResponse("<h1>Home</h1>")
+    return render(request, "index.html")
 
 
 def about(request):
-    return HttpResponse("<h1>You don't know me son.</h1>")
+    return render(request, "about.html")
 
 
 def contact(request):
-    return HttpResponse("<h1>Not Available.</h1>")
+    return  render(request, "contact.html")
 
 
 def http_test(request):

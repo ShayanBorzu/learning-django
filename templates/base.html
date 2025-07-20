@@ -69,18 +69,18 @@
                 <div
                     class="row align-items-center justify-content-between d-flex">
                     <div id="logo">
-                        <a href="index.html"><img
+                        <a href="{% url  'websiteApp:index' %}"><img
                                 src="{% static 'websiteApp/img/logo.png' %}" alt
                                 title /></a>
                     </div>
                     <nav id="nav-menu-container">
                         <ul class="nav-menu">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
+                            <li><a href="{% url  'websiteApp:index' %}">Home</a></li>
+                            <li><a href="{% url  'websiteApp:about' %}">About</a></li>
                             <li class="menu-has-children"><a href>Blog</a>
                                 <ul>
-                                    <li><a href="blog-home.html">Blog
-                                            Home</a></li>
+                                    <li><a href="blog-.html">Blog
+                                            </a></li>
                                     <li><a href="blog-single.html">Blog
                                             Single</a></li>
                                 </ul>
@@ -98,7 +98,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{% url  'websiteApp:contact' %}">Contact</a></li>
                         </ul>
                     </nav><!-- #nav-menu-container -->
                 </div>
@@ -130,7 +130,7 @@
                             <div class="row">
                                 <div class="col">
                                     <ul>
-                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#"></a></li>
                                         <li><a href="#">Feature</a></li>
                                         <li><a href="#">Services</a></li>
                                         <li><a href="#">Portfolio</a></li>

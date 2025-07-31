@@ -93,7 +93,7 @@
 										<li><a href="#">post_category,</a></li>
 									</ul>
 									<div class="user-details row">
-										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#"></a> <span class="lnr lnr-user"></span></p>
+										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">author</a> <span class="lnr lnr-user"></span></p>
 										<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{ post.published }}</a> <span class="lnr lnr-calendar-full"></span></p>
 										<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{post.views}} Views</a> <span class="lnr lnr-eye"></span></p>
 										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">post_comments</a> <span class="lnr lnr-bubble"></span></p>						
@@ -103,11 +103,11 @@
 									<div class="feature-img">
 										<img class="img-fluid" src="{% static 'websiteApp/img/blog/feature-img1.jpg' %}" alt="">
 									</div>
-									<a class="posts-title" href="{% url 'blog:blog_about' %}"><h3>{{post.title}}</h3></a>
+									<a class="posts-title" href="{% url 'blog:blog_about' post.id %}"><h3>{{post.title}}</h3></a>
 									<p class="excert">
 										{{post.content}}
 									</p>
-									<a href="{% url 'blog:blog_about' %}" class="primary-btn">View More</a>
+									<a href="{% url 'blog:blog_about' post.id %}" class="primary-btn">View More</a>
 								</div>
 							</div>{% endfor %}
 		                    <nav class="blog-pagination justify-content-center d-flex">
@@ -166,7 +166,7 @@
 												<img class="img-fluid" src="{% static 'websiteApp/img/blog/pp1.jpg' %}" alt="">
 											</div>
 											<div class="details">
-												<a href="{% url 'blog:blog_about' %}"><h6>Space The Final Frontier</h6></a>
+												<a href="{% url 'blog:blog_about' 1 %}"><h6>Space The Final Frontier</h6></a>
 												<p>02 Hours ago</p>
 											</div>
 										</div>
@@ -175,7 +175,7 @@
 												<img class="img-fluid" src="{% static 'websiteApp/img/blog/pp2.jpg' %}" alt="">
 											</div>
 											<div class="details">
-												<a href="{% url 'blog:blog_about' %}"><h6>The Amazing Hubble</h6></a>
+												<a href="{% url 'blog:blog_about' 1 %}"><h6>The Amazing Hubble</h6></a>
 												<p>02 Hours ago</p>
 											</div>
 										</div>
@@ -184,7 +184,7 @@
 												<img class="img-fluid" src="{% static 'websiteApp/img/blog/pp3.jpg' %}" alt="">
 											</div>
 											<div class="details">
-												<a href="{% url 'blog:blog_about' %}"><h6>Astronomy Or Astrology</h6></a>
+												<a href="{% url 'blog:blog_about' 1 %}"><h6>Astronomy Or Astrology</h6></a>
 												<p>02 Hours ago</p>
 											</div>
 										</div>
@@ -193,7 +193,7 @@
 												<img class="img-fluid" src="{% static 'websiteApp/img/blog/pp4.jpg' %}" alt="">
 											</div>
 											<div class="details">
-												<a href="{% url 'blog:blog_about' %}"><h6>Asteroids telescope</h6></a>
+												<a href="{% url 'blog:blog_about' 1 %}"><h6>Asteroids telescope</h6></a>
 												<p>02 Hours ago</p>
 											</div>
 										</div>															

@@ -32,3 +32,5 @@ class Post(models.Model):
         return (
             f"{self.id} - {self.title}"  # pyright: ignore[reportAttributeAccessIssue]
         )
+    def snippet(self):
+        return F"{self.content[:5]}..." # pyright: ignore[reportAttributeAccessIssue]

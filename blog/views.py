@@ -9,13 +9,9 @@ def blog_index(request):
 
 
 def blog_about(request, pk):   
-    post = get_object_or_404(Post, id=pk) 
+    
+    post = get_object_or_404(Post, id=pk, status=1, published__lte=timezone.now()) 
     context = {'post': post}
     post.views += 1
-    post.save(update_fields=['views'])  # Efficient update
+    post.save(update_fields=['views'])  
     return render(request, 'blog/blog_about.html', context)
-
-def test(request, pk):
-    post = get_object_or_404(Post, id=pk) 
-    context = {'post': post}
-    return render(request, "blog/test.html", context)

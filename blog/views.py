@@ -10,8 +10,15 @@ def blog_index(request):
 
 def blog_about(request, pk):   
     
-    post = get_object_or_404(Post, id=pk, status=1, published__lte=timezone.now()) 
-    context = {'post': post}
+    post = get_object_or_404(Post, id=pk, status=1, published__lte=timezone.now())
+    # Find previous and next posts
+    prev_post = Post.objects.filter(status=1, published__lte=timezone.now(), id__lt=post.id).order_by('-id').first()
+    next_post = Post.objects.filter(status=1, published__lte=timezone.now(), id__gt=post.id).order_by('id').first()
+    context = {
+        'post': post,
+        'prev_post': prev_post,
+        'next_post': next_post,
+    }
     post.views += 1
-    post.save(update_fields=['views'])  
+    post.save(update_fields=['views'])
     return render(request, 'blog/blog_about.html', context)

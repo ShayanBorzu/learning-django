@@ -1,14 +1,9 @@
-{% load test %}
+{% load blog_tags %}
 
 <!DOCTYPE html>
 <html>
 <head><title>Posts</title></head>
 <body>
-  <h1>
-    {% test as tt %}
-    {% for t in tt %}
-      {{t}}
-    {% endfor %}
-  </h1>
+      {% categories %}
 </body>
 </html>

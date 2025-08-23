@@ -1,10 +1,15 @@
 from django.shortcuts import render, get_object_or_404
-from blog.models import Post
+from blog.models import Post, Category
 from django.utils import timezone
 
+
 # Create your views here.
-def blog_index(request):
+def blog_index(request, cat_name=None, author=None):
     posts = Post.objects.filter(status=1, published__lte=timezone.now())
+    if cat_name:
+        posts = posts.filter(category__name=cat_name)
+    elif author:
+        posts = posts.filter(author__username=author)
     return render(request, "blog/blog_index.html",{'posts': posts})
 
 

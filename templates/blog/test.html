@@ -1,7 +1,14 @@
+{% load test %}
+
 <!DOCTYPE html>
 <html>
 <head><title>Posts</title></head>
 <body>
-  <h1>{{post.title}}</h1>
+  <h1>
+    {% test as tt %}
+    {% for t in tt %}
+      {{t}}
+    {% endfor %}
+  </h1>
 </body>
 </html>

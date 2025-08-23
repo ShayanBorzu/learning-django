@@ -22,3 +22,6 @@ def blog_about(request, pk):
     post.views += 1
     post.save(update_fields=['views'])
     return render(request, 'blog/blog_about.html', context)
+
+def test(request):
+    return render(request,'blog/test.html')

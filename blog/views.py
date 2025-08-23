@@ -30,3 +30,10 @@ def blog_about(request, pk):
 
 def test(request):
     return render(request,'blog/test.html')
+
+def blog_search(request):
+    query = request.GET.get('s')
+    posts = Post.objects.filter(status=1, published__lte=timezone.now())
+    if query:
+        posts = posts.filter(title__icontains=query) | posts.filter(content__icontains=query)
+    return render(request, 'blog/blog_index.html', {'posts': posts, 'search_query': query})

@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-
+from blog.models import Post
+from django.utils import timezone  
 
 def home(request):
-    return render(request, "websiteApp/index.html")
+    posts = Post.objects.filter(status=1, published__lte=timezone.now()).order_by('-published')[:6]
+    return render(request, "websiteApp/index.html", {'posts': posts})       
 
 
 def about(request):

@@ -32,3 +32,4 @@ def categories():
 @register.inclusion_tag('blog/search.html')
 def search():
     return {}
+

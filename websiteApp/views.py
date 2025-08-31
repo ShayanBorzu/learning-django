@@ -19,9 +19,9 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False) 
-            instance.title = "unknown"
-            if not instance.email:
-                instance.email = "unknown@none.null"
+            instance.name = "unknown"
+            if not instance.subject:
+                instance.subject = "-empty-"
             instance.save()
             messages.add_message(request, messages.SUCCESS, 'Successful.')
         else:

@@ -2,7 +2,7 @@ from django import forms
 from websiteApp.models import Contact, NewsLetter
 
 class ContactForm(forms.ModelForm):
-    email = forms.EmailField(required=False) 
+    subject = forms.CharField(required=False) 
     class Meta:
         model = Contact
         fields = '__all__'

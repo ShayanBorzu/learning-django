@@ -9,4 +9,5 @@ urlpatterns = [
     path("contact/", contact, name='contact'),
     path("http_test/", http_test),
     path("json_test/", json_test),
+    path('newsletter/', newsletter_view, name='newsletter'),
 ]

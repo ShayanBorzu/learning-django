@@ -8,3 +8,8 @@ class Contact(models.Model):
     content = models.TextField()
     def __str__(self):
         return f'{self.id} - {self.title}' # type: ignore
+
+class NewsLetter(models.Model):
+    email = models.EmailField()
+    def __str__(self):
+        return f'{self.id} - {self. email}' # type: ignore

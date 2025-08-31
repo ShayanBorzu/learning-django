@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
     <head>
+
         <!-- Mobile Specific Meta -->
         <meta name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,6 +45,51 @@
     </head>
 
     <body>
+
+        <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> -->
+<!--         
+		{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="modal z-999" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %} -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const messages = document.querySelectorAll('.messages li');
+                messages.forEach(message => {
+                    alert(message.textContent);  // Display each message as a popup
+                });
+            });
+        </script>
+
+
         <header id="header">
             <div class="header-top">
                 <div class="container">
@@ -135,12 +181,13 @@
                                 For business professionals caught between high
                                 OEM price and mediocre print and graphic output.
                             </p>
-                            <div id="mc_embed_signup">
-                                <form target="_blank"
-                                    action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                    method="get" class="subscription relative">
+                            <div>
+                                <form 
+                                    action="{% url 'websiteApp:newsletter' %}"
+                                    method="post" class="subscription relative">
                                     <div class="input-group d-flex flex-row">
-                                        <input name="EMAIL"
+                                    {% csrf_token %}
+                                        <input name="email"
                                             placeholder="Email Address"
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Email Address '"

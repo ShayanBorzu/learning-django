@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from blog.models import Post, Category
 from django.utils import timezone
-from django.http import Http404, HttpResponse
-from blog.form import NameForm
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from blog.form import NameForm, BlogContact
+from websiteApp.form import NewsLetterForm
 
 
 
@@ -44,26 +45,22 @@ def blog_about(request, pk):
 def test_view(request):
     
     if request.method == 'POST':
-        form = NameForm(request.POST)
+        form = BlogContact(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            print("POST method called. Name - email - subject - message", name, email, subject, message)
-        
-            return HttpResponse('K')
+            form.save()        
+            return HttpResponse('K200')
         else:
             print(form.errors)
-    elif request.method == 'GET':
-        print("GET method called")
-
+     
+    form = BlogContact()
 
     return render(request,'blog/test.html', {'form': form})
+
+
 
 def blog_search(request):
     query = request.GET.get('s')
     posts = Post.objects.filter(status=1, published__lte=timezone.now())
     if query:
-        posts = posts.filter(title__icontains=query) | posts.filter(content__icontains=query).distinct()
+        posts = (posts.filter(title__icontains=query) | posts.filter(content__icontains=query)).distinct()
     return render(request, 'blog/blog_index.html', {'posts': posts, 'search_query': query})

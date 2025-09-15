@@ -1,7 +1,10 @@
 from django.urls import path
 from websiteApp.views import *
 
+
 app_name = 'websiteApp'
+
+
 
 urlpatterns = [
     path("", home, name='index'),
@@ -10,4 +13,5 @@ urlpatterns = [
     path("http_test/", http_test),
     path("json_test/", json_test),
     path('newsletter/', newsletter_view, name='newsletter'),
+
 ]

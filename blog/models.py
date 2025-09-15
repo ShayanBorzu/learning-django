@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+from taggit.managers import TaggableManager
 
 
 # Create your models here.
@@ -16,7 +18,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    # tags
+    tag = TaggableManager()
     category = models.ManyToManyField(Category)
     views = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
@@ -32,4 +34,7 @@ class Post(models.Model):
             f"{self.id} - {self.title}"  # pyright: ignore[reportAttributeAccessIssue]
         )
     def snippet(self):
-        return F"{self.content[:5]}..." # pyright: ignore[reportAttributeAccessIssue]
+        return F"{self.content[:5]}..." # pyright: ignore
+    
+    def get_absolute_url(self):
+        return reverse("blog:blog_about", kwargs={"pk" : self.id}) # pyright: ignore  

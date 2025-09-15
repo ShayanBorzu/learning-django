@@ -38,10 +38,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    "django.contrib.sitemaps",
     "django.contrib.sites",
     "django.contrib.humanize",
     "websiteApp.apps.WebsiteappConfig",
     "blog.apps.BlogConfig",
+    "robots",
+    "debug_toolbar",
+    "taggit",
+    'django_summernote',
+    'captcha',
     
 ]
 
@@ -55,6 +61,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "mysite.urls"
@@ -140,3 +147,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]

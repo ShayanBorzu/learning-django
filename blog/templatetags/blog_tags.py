@@ -1,6 +1,7 @@
 from django import template
 from blog.models import *
 from django.utils import timezone
+from taggit.models import Tag
 
 register = template.Library()
 
@@ -29,7 +30,12 @@ def categories():
         cat_dict[name] = posts.filter(category=name).count()
     return {'categories': cat_dict}
 
+@register.inclusion_tag('blog/tags.html')
+def tags():
+    return {"tags": Tag.objects.all()}
+
+
+
 @register.inclusion_tag('blog/search.html')
 def search():
     return {}
-

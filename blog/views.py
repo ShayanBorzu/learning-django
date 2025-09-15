@@ -10,12 +10,14 @@ from websiteApp.form import NewsLetterForm
 
 
 # Create your views here.
-def blog_index(request, cat_name=None, author=None):
+def blog_index(request, cat_name=None, author=None, tag_name=None):
     posts = Post.objects.filter(status=1, published__lte=timezone.now())
     if cat_name:
         posts = posts.filter(category__name=cat_name)
     elif author:
         posts = posts.filter(author__username=author)
+    elif tag_name:
+        posts = posts.filter(tag__name__in=[tag_name])
 
     posts = Paginator(posts, 1)
     try:  

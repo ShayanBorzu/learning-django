@@ -18,3 +18,10 @@ class PostAdmin(SummernoteModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    date_hierarchy = "created_date"
+    empty_value_display = "-empty-"
+    list_display = ("id","subject", "name", "email")
+    list_filter = ("approved",)
+    search_fields = ["email", "message"]

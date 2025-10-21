@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from blog.models import Post, Category
+from blog.models import Post, Category, Comment
 from django.utils import timezone
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from blog.form import NameForm, BlogContact
 from websiteApp.form import NewsLetterForm
-
+from .form import CommentForm
+from django.contrib import messages
+from django.shortcuts import redirect
 
 
 
@@ -30,15 +32,25 @@ def blog_index(request, cat_name=None, author=None, tag_name=None):
 
 
 def blog_about(request, pk):
-    
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Successful.')
+            redirect(request.path)
+        else:
+            messages.add_message(request, messages.ERROR, 'Error encountered.')
+            
     post = get_object_or_404(Post, id=pk, status=1, published__lte=timezone.now())
     # Find previous and next posts
     prev_post = Post.objects.filter(status=1, published__lte=timezone.now(), id__lt=post.id).order_by('-id').first() # type: ignore
     next_post = Post.objects.filter(status=1, published__lte=timezone.now(), id__gt=post.id).order_by('id').first() # type: ignore
+    comments = Comment.objects.filter(post=post, approved=True)
     context = {
         'post': post,
         'prev_post': prev_post,
         'next_post': next_post,
+        'comments': comments,
     }
     post.views += 1
     post.save(update_fields=['views'])

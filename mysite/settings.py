@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'multi_captcha_admin',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     "taggit",
     'django_summernote',
     'captcha',
+    'accounts.apps.AccountsConfig'
     
 ]
 
@@ -153,3 +155,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
+}

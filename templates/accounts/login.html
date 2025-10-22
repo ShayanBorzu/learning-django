@@ -1,5 +1,16 @@
     {% load static %}
 
+
+        {% if messages %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                '{% for message in messages %}'
+                    alert('{{ message|escapejs }}');
+                '{% endfor %}'
+            });
+        </script>
+        {% endif %}
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -45,7 +56,7 @@
                             Remember me
                         </span>
                     </label>
-                    <a href="#" class="forgot-password">Forgot password?</a>
+                    <a href="{% url 'accounts:password_reset' %}" class="forgot-password">Forgot password?</a>
                 </div>
                 <!-- <button type="submit" class="primary-btn text-uppercase">Post Comment</button>	 -->
                 

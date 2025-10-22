@@ -7,6 +7,8 @@ from django.contrib.sitemaps.views import sitemap
 from websiteApp.sitemaps import StaticViewSitemap
 from blog.sitemaps import *
 from debug_toolbar.toolbar import debug_toolbar_urls # type: ignore 
+from django.contrib.auth import views as auth_views
+
 
 
 sitemaps = {
@@ -23,8 +25,7 @@ urlpatterns = [
     path('robots.txt', include('robots.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('captcha/', include('captcha.urls')),
-    path("accounts/", include('accounts.urls'))
-
+    path("accounts/", include('accounts.urls')),
 ] + debug_toolbar_urls()
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

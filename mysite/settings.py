@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'multi_captcha_admin',
+    'accounts.apps.AccountsConfig',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -49,8 +50,6 @@ INSTALLED_APPS = [
     "taggit",
     'django_summernote',
     'captcha',
-    'accounts.apps.AccountsConfig'
-    
 ]
 
 SITE_ID = 2
@@ -159,3 +158,10 @@ INTERNAL_IPS = [
 MULTI_CAPTCHA_ADMIN = {
     'engine': 'simple-captcha',
 }
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailOrUsernameModelBackend',  # Your custom backend for email or username
+    'django.contrib.auth.backends.ModelBackend',      # Default username backend
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

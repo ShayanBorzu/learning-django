@@ -73,7 +73,7 @@
             {% endfor %}
         </ul>
         {% endif %} -->
-        {% if messages %}
+        <!-- {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
                     <li class="{{ message.tags }}">{{ message }}</li>
@@ -87,7 +87,17 @@
                     alert(message.textContent);  // Display each message as a popup
                 });
             });
+        </script> -->
+
+        {% if messages %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                '{% for message in messages %}'
+                    alert('{{ message|escapejs }}');  // Display each message in a popup
+                '{% endfor %}'
+            });
         </script>
+        {% endif %}
 
 
         <header id="header">
@@ -97,6 +107,7 @@
                         <div class="col-lg-6 col-sm-6 col-6 header-top-left">
                             {% if request.user.is_authenticated %}
                                 <a href="{% url 'websiteApp:index' %}">{{request.user.username}}</a>
+                                <a href="{% url 'accounts:logout' %}">Logout</a>
                             {% else %}
                                 <a href="{% url 'accounts:login' %}">Login</a>
                                 <a href="{% url 'accounts:signup' %}">Sign Up</a>

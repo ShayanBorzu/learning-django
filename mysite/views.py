@@ -1,5 +1,4 @@
-
-from django.http import HttpResponse
+from django.shortcuts import render
 
 def coming_soon(request):
-    return HttpResponse("<h1>به زودی در دسترس خواهد بود</h1><p>لطفا بعدا مراجعه کنید.</p>")
+    return render(request, 'coming_soon.html')
